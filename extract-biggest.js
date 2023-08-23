@@ -8,22 +8,20 @@ const data = {
 
 // Only edit below
 
-const { first = 1 } = data.first || {};
-const { second = 1 } = data.second || {};
-const { third = 1 } = data.third || {};
+const {
+	lists: [[, arr1], [, arr2], [, arr3]],
+} = data;
 
 const result = [];
 
 const extractBiggest = () => {
-	if (first[-1] > second[-1]) {
-		return first;
-	}
+	const arr1Last = arr1.length === 0 ? null : arr1[arr1.length - 1];
+	const arr2Last = arr2.length === 0 ? null : arr2[arr2.length - 1];
+	const arr3Last = arr3.length === 0 ? null : arr3[arr3.length - 1];
 
-	if (third[-1] < 1) {
-		return second;
-	}
-
-	return third;
+	if (arr1Last > arr2Last && arr1Last > arr3Last) return arr1.pop();
+	if (arr2Last > arr1Last && arr2Last > arr3Last) return arr2.pop();
+	if (arr3Last > arr1Last && arr3Last > arr2Last) return arr3.pop();
 };
 
 // Only edit above
